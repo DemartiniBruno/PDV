@@ -18,11 +18,11 @@ const Produto = sequelize.define('produto', {
     },
     valor_venda: {
         type: DataTypes.DECIMAL(6,2),
-        default: 0
+        defaultValue: 0
     },
     quantidade: {
         type: DataTypes.DECIMAL(6,2),
-        default: 0
+        defaultValue: 0
     }
 }, { sequelize, paranoid: true });
 
@@ -33,7 +33,7 @@ const Venda = sequelize.define('venda',{
     },
     processada: {
         type: DataTypes.SMALLINT(1),
-        default: 0
+        defaultValue: 0
     },
     data_emissao:{
         type: DataTypes.DATE
