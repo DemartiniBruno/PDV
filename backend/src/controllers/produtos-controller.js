@@ -12,20 +12,22 @@ const cadastrar_produto = async (req, res) => {
             throw new Error('O nome do produto deve ter no mínimo 3 caracteres')
         }
 
-        else if (await db.Produto.findOne({
-            where: {
-                codigo_barras: req.body.codigo_barras
+        else if (req.body.codigo_barras){
+            if (await db.Produto.findOne({
+                where: {
+                    codigo_barras: req.body.codigo_barras
+                }
+            })) {
+                throw new Error('Código de barras já utilizado')
             }
-        })) {
-            throw new Error('Código de barras já utilizado')
-        }
 
-        else {
-            const produto = await db.Produto.create(req.body)
-            res.json({
-                status: 200,
-                message: 'Produto cadastrado com sucesso'
-            })
+            else {
+                const produto = await db.Produto.create(req.body)
+                res.json({
+                    status: 200,
+                    message: 'Produto cadastrado com sucesso'
+                })
+            }
         }
 
     } catch (error) {

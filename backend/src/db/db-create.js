@@ -15,6 +15,8 @@ const Produto = sequelize.define('produto', {
     },
     codigo_barras: {
         type: DataTypes.INTEGER(13),
+        defaultValue: null
+
     },
     valor_venda: {
         type: DataTypes.DECIMAL(6,2),
