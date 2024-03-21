@@ -2,11 +2,31 @@ const db = require('../db/db-create')
 
 const cadastrar_produto = async (req, res) => {
     try {
-        const produto = await db.Produto.create(req.body)
-        res.json({
-            status: 200,
-            message: 'Produto cadastrado com sucesso'
-        })
+
+
+        if (!req.body.nome || req.body.nome == '') {
+            throw new Error('O nome do produto é obrigatório')
+        }
+
+        else if (req.body.nome.length < 3) {
+            throw new Error('O nome do produto deve ter no mínimo 3 caracteres')
+        }
+
+        else if (await db.Produto.findOne({
+            where: {
+                codigo_barras: req.body.codigo_barras
+            }
+        })) {
+            throw new Error('Código de barras já utilizado')
+        }
+
+        else {
+            const produto = await db.Produto.create(req.body)
+            res.json({
+                status: 200,
+                message: 'Produto cadastrado com sucesso'
+            })
+        }
 
     } catch (error) {
         res.json({
@@ -31,13 +51,13 @@ const consultar_produtos = async (req, res) => {
 const consultar_produto_especifico = async (req, res) => {
     try {
         const produto = await db.Produto.findOne({
-            where:{
+            where: {
                 id: req.params.produto_id
             }
         })
-        if(produto){
+        if (produto) {
             res.json(produto)
-        } else{
+        } else {
             throw new Error('Produto não encontrado')
         }
     } catch (error) {
@@ -51,7 +71,7 @@ const consultar_produto_especifico = async (req, res) => {
 const editar_produto = async (req, res) => {
     try {
         const produto = await db.Produto.findOne({
-            where:{
+            where: {
                 id: req.params.produto_id
             }
         })
@@ -59,7 +79,7 @@ const editar_produto = async (req, res) => {
         produto.codigo_barras = req.body.codigo_barras
         produto.valor_venda = req.body.valor_venda
         produto.quantidade = req.body.quantidade
-        await produto.save({ fields: ['nome', 'codigo_barras','valor_venda','quantidade'] });
+        await produto.save({ fields: ['nome', 'codigo_barras', 'valor_venda', 'quantidade'] });
 
         res.json(produto)
     } catch (error) {
