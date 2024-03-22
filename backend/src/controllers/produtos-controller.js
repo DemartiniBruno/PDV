@@ -3,7 +3,6 @@ const db = require('../db/db-create')
 const cadastrar_produto = async (req, res) => {
     try {
 
-
         if (!req.body.nome || req.body.nome == '') {
             throw new Error('O nome do produto é obrigatório')
         }
@@ -12,22 +11,28 @@ const cadastrar_produto = async (req, res) => {
             throw new Error('O nome do produto deve ter no mínimo 3 caracteres')
         }
 
-        else if (req.body.codigo_barras){
+        else if (req.body.codigo_barras) {
             if (await db.Produto.findOne({
                 where: {
                     codigo_barras: req.body.codigo_barras
                 }
             })) {
                 throw new Error('Código de barras já utilizado')
-            }
-
-            else {
+            } else {
                 const produto = await db.Produto.create(req.body)
                 res.json({
                     status: 200,
                     message: 'Produto cadastrado com sucesso'
                 })
             }
+        }
+
+        else {
+            const produto = await db.Produto.create(req.body)
+            res.json({
+                status: 200,
+                message: 'Produto cadastrado com sucesso'
+            })
         }
 
     } catch (error) {
@@ -69,24 +74,37 @@ const consultar_produto_especifico = async (req, res) => {
 
 const editar_produto = async (req, res) => {
     try {
-        const produto = await db.Produto.findOne({
-            where: {
-                id: req.params.produto_id
-            }
-        })
-        produto.nome = req.body.nome
-        produto.codigo_barras = req.body.codigo_barras
-        produto.valor_venda = req.body.valor_venda
-        produto.quantidade = req.body.quantidade
-        await produto.save({ fields: ['nome', 'codigo_barras', 'valor_venda', 'quantidade'] });
+        const { nome, codigo_barras, valor_venda, quantidade } = req.body
+        const produto = await localizaProduto(req.params.produto_id);
 
-        res.json(produto)
+        if(!produto){
+            throw new Error('Produto não encontrado')
+        } else {
+            if(req.body.codigo_barras){
+                if (await db.Produto.findOne({
+                    where: {
+                        codigo_barras: req.body.codigo_barras
+                    }
+                })) {
+                    throw new Error('Código de barras já utilizado')
+                }
+                else {
+                    const produto_alteado = await db.Produto.update({ nome, codigo_barras, valor_venda, quantidade }, { where: { id: req.params.produto_id } })
+                    res.json(produto_alteado)
+                } 
+            } else {
+                const produto_alteado = await db.Produto.update({ nome, codigo_barras, valor_venda, quantidade }, { where: { id: req.params.produto_id } })
+                res.json(produto_alteado)
+            }
+        }
+
     } catch (error) {
         res.json({
             status: 500,
             message: error.message
         })
     }
+
 }
 
 const apagar_produto = async (req, res) => {
@@ -108,6 +126,8 @@ const apagar_produto = async (req, res) => {
 const localizaProduto = async (id) => {
     return produto = await db.Produto.findByPk(id);
 }
+
+
 
 module.exports = {
     cadastrar_produto,
