@@ -29,11 +29,15 @@ const Produto = sequelize.define('produto', {
 }, { sequelize, paranoid: true });
 
 const Venda = sequelize.define('venda',{
+    numero_venda: {
+        type: DataTypes.INTEGER(6),
+        allowNull: false
+    },
     valor_total: {
         type: DataTypes.DECIMAL(6,2),
         // allowNull: false verificar a necessidade
     },
-    processada: {
+    stats: {
         type: DataTypes.SMALLINT(1),
         defaultValue: 0
     },

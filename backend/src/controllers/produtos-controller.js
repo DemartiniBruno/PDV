@@ -89,12 +89,12 @@ const editar_produto = async (req, res) => {
                     throw new Error('Código de barras já utilizado')
                 }
                 else {
-                    const produto_alteado = await db.Produto.update({ nome, codigo_barras, valor_venda, quantidade }, { where: { id: req.params.produto_id } })
-                    res.json(produto_alteado)
+                    const produto_alterado = await db.Produto.update({ nome, codigo_barras, valor_venda, quantidade }, { where: { id: req.params.produto_id } })
+                    res.json(produto_alterado)
                 } 
             } else {
-                const produto_alteado = await db.Produto.update({ nome, codigo_barras, valor_venda, quantidade }, { where: { id: req.params.produto_id } })
-                res.json(produto_alteado)
+                const produto_alterado = await db.Produto.update({ nome, codigo_barras, valor_venda, quantidade }, { where: { id: req.params.produto_id } })
+                res.json(produto_alterado)
             }
         }
 
@@ -126,8 +126,6 @@ const apagar_produto = async (req, res) => {
 const localizaProduto = async (id) => {
     return produto = await db.Produto.findByPk(id);
 }
-
-
 
 module.exports = {
     cadastrar_produto,
