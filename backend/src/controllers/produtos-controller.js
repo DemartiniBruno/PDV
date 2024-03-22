@@ -52,11 +52,8 @@ const consultar_produtos = async (req, res) => {
 
 const consultar_produto_especifico = async (req, res) => {
     try {
-        const produto = await db.Produto.findOne({
-            where: {
-                id: req.params.produto_id
-            }
-        })
+        const produto = await localizaProduto(req.params.produto_id);
+        console.log(produto)
         if (produto) {
             res.json(produto)
         } else {
@@ -94,7 +91,7 @@ const editar_produto = async (req, res) => {
 
 const apagar_produto = async (req, res) => {
     try {
-        const produto = await db.Produto.findByPk(req.params.produto_id);
+        const produto = await localizaProduto(req.params.produto_id);
         produto.destroy();
         res.json({
             status: 200,
@@ -106,6 +103,10 @@ const apagar_produto = async (req, res) => {
             message: error.message
         })
     }
+}
+
+const localizaProduto = async (id) => {
+    return produto = await db.Produto.findByPk(id);
 }
 
 module.exports = {
