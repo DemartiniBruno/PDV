@@ -35,9 +35,10 @@ const Venda = sequelize.define('venda',{
     },
     valor_total: {
         type: DataTypes.DECIMAL(6,2),
+        defaultValue: 0
         // allowNull: false verificar a necessidade
     },
-    stats: {
+    status: {
         type: DataTypes.SMALLINT(1),
         defaultValue: 0
     },
@@ -70,5 +71,6 @@ Itens_venda.belongsTo(Venda,{foreignKey:'venda_id'});
 module.exports = {
     sequelize,
     Produto,
-    Venda
+    Venda,
+    Itens_venda
 };
