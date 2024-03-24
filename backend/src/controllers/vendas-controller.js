@@ -66,9 +66,30 @@ const atualizar_valor_venda = async (venda_id) => {
     console.log(`Valor da venda ${venda_id} atualizado para ${valor_total}`)
 }
 
+const cancelar_item = async (req, res) => {
+    const item_cancelado = await db.Itens_venda.destroy({where:{id:req.body.id}})
+    atualizar_valor_venda(req.params.venda_id)
+    res.json(item_cancelado)
+}
+
+// Acho que essa funcao é para um get:venda_id
+// const listar_itens_venda = async (venda_id) => {
+//     const itens_venda = await db.Itens_venda.findAll({
+//         include:{
+//             model: db.Venda,
+//             where:{
+//                 id: venda_id
+//             }
+//         }
+//     })
+
+//     return itens_venda
+// }
+
 module.exports = {
     nova_venda,
     adicionar_item,
     consultar_vendas,
-    consultar_venda_especifica
+    consultar_venda_especifica,
+    cancelar_item
 }
