@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { NavbarDefaultComponent } from './components/navbar-default/navbar-default.component';
 import { ListaDadosComponent } from './components/lista-dados/lista-dados.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {MatMenuModule} from '@angular/material/menu';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatMenuModule
   ],
   providers: [
     provideAnimationsAsync()

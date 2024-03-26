@@ -5,7 +5,10 @@
         <circle cx="33.1046" cy="58.8023" r="27.0581" fill="#58788C" />
     </svg>
 
-    <a href="/">Cadastro</a>
+    <a mat-button [matMenuTriggerFor]="menu">Cadastro</a>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>Produtos</button>
+    </mat-menu>
     <a href="/">Vendas</a>
     <a href="/">Configurações</a>
 </nav>
