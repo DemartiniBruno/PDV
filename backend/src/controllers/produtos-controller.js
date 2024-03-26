@@ -77,21 +77,31 @@ const editar_produto = async (req, res) => {
         const { nome, codigo_barras, valor_venda, quantidade } = req.body
         const produto = await localizaProduto(req.params.produto_id);
 
-        if(!produto){
+        if (!produto) {
             throw new Error('Produto não encontrado')
         } else {
-            if(req.body.codigo_barras){
-                if (await db.Produto.findOne({
+            if (req.body.codigo_barras) {
+                const produto_cadastrado = await db.Produto.findOne({
                     where: {
                         codigo_barras: req.body.codigo_barras
                     }
-                })) {
-                    throw new Error('Código de barras já utilizado')
+                })
+
+                console.log(produto_cadastrado)
+
+                if (produto_cadastrado) {
+                    if(produto_cadastrado.id == req.params.produto_id){
+                        const produto_alterado = await db.Produto.update({ nome, codigo_barras, valor_venda, quantidade }, { where: { id: req.params.produto_id } })
+                        res.json(produto_alterado)
+                    } else {
+                        throw new Error('Código de barras já utilizado')
+                    }
+
                 }
                 else {
                     const produto_alterado = await db.Produto.update({ nome, codigo_barras, valor_venda, quantidade }, { where: { id: req.params.produto_id } })
                     res.json(produto_alterado)
-                } 
+                }
             } else {
                 const produto_alterado = await db.Produto.update({ nome, codigo_barras, valor_venda, quantidade }, { where: { id: req.params.produto_id } })
                 res.json(produto_alterado)
