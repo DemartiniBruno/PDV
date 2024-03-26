@@ -7,13 +7,19 @@ import { NavbarDefaultComponent } from './components/navbar-default/navbar-defau
 import { ListaDadosComponent } from './components/lista-dados/lista-dados.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {MatMenuModule} from '@angular/material/menu';
+import { HomeComponent } from './pages/home/home.component';
+import { ProdutosComponent } from './pages/produtos/produtos.component';
+import { VendasComponent } from './pages/vendas/vendas.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarDefaultComponent,
-    ListaDadosComponent
+    ListaDadosComponent,
+    HomeComponent,
+    ProdutosComponent,
+    VendasComponent
   ],
   imports: [
     BrowserModule,
