@@ -15,6 +15,5 @@ a:hover{
 nav{
     display: flex;
     align-items: center;
-
-    margin: 2rem ;
+    margin: 0rem 2rem 2rem 2rem ;
 }

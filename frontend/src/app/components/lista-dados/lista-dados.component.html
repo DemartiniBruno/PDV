@@ -1,0 +1,17 @@
+<div>
+    <ul>
+        <li *ngFor="let dado of dados">
+            <h1>
+                <span>#{{dado.id}}</span>
+                <span>{{dado.nome}}</span>
+                <span>{{dado.codigo_barras}}</span>
+                <span>Quantidade: {{dado.quantidade}}</span>
+                <span>Preço: R${{dado.quantidade}}</span>
+            </h1>
+        </li>
+    </ul>
+
+    <button>
+        +
+    </button>
+</div>
