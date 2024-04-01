@@ -13,6 +13,8 @@ import { ProdutosComponent } from './pages/produtos/produtos.component';
 import { VendasComponent } from './pages/vendas/vendas.component';
 import { CadastroProdutoComponent } from './pages/cadastro-produto/cadastro-produto.component';
 import { CadastroVendaComponent } from './pages/cadastro-venda/cadastro-venda.component';
+import { DetalheProdutoComponent } from './pages/detalhe-produto/detalhe-produto.component';
+import { DetalheVendaComponent } from './pages/detalhe-venda/detalhe-venda.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { CadastroVendaComponent } from './pages/cadastro-venda/cadastro-venda.co
     ProdutosComponent,
     VendasComponent,
     CadastroProdutoComponent,
-    CadastroVendaComponent
+    CadastroVendaComponent,
+    DetalheProdutoComponent,
+    DetalheVendaComponent
   ],
   imports: [
     BrowserModule,
