@@ -11,6 +11,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import { HomeComponent } from './pages/home/home.component';
 import { ProdutosComponent } from './pages/produtos/produtos.component';
 import { VendasComponent } from './pages/vendas/vendas.component';
+import { CadastroProdutoComponent } from './pages/cadastro-produto/cadastro-produto.component';
+import { CadastroVendaComponent } from './pages/cadastro-venda/cadastro-venda.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { VendasComponent } from './pages/vendas/vendas.component';
     ListaDadosComponent,
     HomeComponent,
     ProdutosComponent,
-    VendasComponent
+    VendasComponent,
+    CadastroProdutoComponent,
+    CadastroVendaComponent
   ],
   imports: [
     BrowserModule,

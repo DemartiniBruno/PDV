@@ -1,7 +1,7 @@
 <div>
     <ul>
         <li *ngFor="let dado of dados">
-            <h1>
+            <h1 routerLink="/{{router}}/{{dado.id}}">
                 <span>#{{dado.id}}</span>
                 <span>{{dado.nome}}</span>
                 <span>{{dado.codigo_barras}}</span>

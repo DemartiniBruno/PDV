@@ -9,4 +9,5 @@ import { Produto } from '../../Produto';
 export class ListaDadosComponent {
   // @Input() dados:Produto[] = []
   @Input() dados:any
+  @Input() router:string = ''
 }
