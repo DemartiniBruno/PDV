@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Produto } from '../../Produto';
 
 @Component({
   selector: 'app-lista-dados',
@@ -6,76 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './lista-dados.component.css'
 })
 export class ListaDadosComponent {
-  dados =  [
-    {
-      id:123,
-      nome:'produto de teste',
-      codigo_barras: 7894900027013,
-      quantidade:10,
-      preco_venda:10
-    },
-    {
-      id:123,
-      nome:'produto de teste',
-      codigo_barras: 7894900027013,
-      quantidade:10,
-      preco_venda:10
-    },
-    {
-      id:123,
-      nome:'produto de teste',
-      codigo_barras: 7894900027013,
-      quantidade:10,
-      preco_venda:10
-    },
-    {
-      id:123,
-      nome:'produto de teste',
-      codigo_barras: 7894900027013,
-      quantidade:10,
-      preco_venda:10
-    },
-    {
-      id:123,
-      nome:'produto de teste',
-      codigo_barras: 7894900027013,
-      quantidade:10,
-      preco_venda:10
-    },
-    {
-      id:123,
-      nome:'produto de teste',
-      codigo_barras: 7894900027013,
-      quantidade:10,
-      preco_venda:10
-    },
-    {
-      id:123,
-      nome:'produto de teste',
-      codigo_barras: 7894900027013,
-      quantidade:10,
-      preco_venda:10
-    },
-    {
-      id:123,
-      nome:'produto de teste',
-      codigo_barras: 7894900027013,
-      quantidade:10,
-      preco_venda:10
-    },
-    {
-      id:123,
-      nome:'produto de teste',
-      codigo_barras: 7894900027013,
-      quantidade:10,
-      preco_venda:10
-    },
-    {
-      id:123,
-      nome:'produto de teste',
-      codigo_barras: 7894900027013,
-      quantidade:10,
-      preco_venda:10
-    }
-  ]
+  // @Input() dados:Produto[] = []
+  @Input() dados:any
 }
