@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { NavbarDefaultComponent } from './components/navbar-default/navbar-default.component';
 import { ListaDadosComponent } from './components/lista-dados/lista-dados.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import {MatMenuModule} from '@angular/material/menu';
 import { HomeComponent } from './pages/home/home.component';
 import { ProdutosComponent } from './pages/produtos/produtos.component';
 import { VendasComponent } from './pages/vendas/vendas.component';
@@ -16,6 +15,11 @@ import { CadastroVendaComponent } from './pages/cadastro-venda/cadastro-venda.co
 import { DetalheProdutoComponent } from './pages/detalhe-produto/detalhe-produto.component';
 import { DetalheVendaComponent } from './pages/detalhe-venda/detalhe-venda.component';
 
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -28,13 +32,17 @@ import { DetalheVendaComponent } from './pages/detalhe-venda/detalhe-venda.compo
     CadastroProdutoComponent,
     CadastroVendaComponent,
     DetalheProdutoComponent,
-    DetalheVendaComponent
+    DetalheVendaComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatMenuModule,
-    HttpClientModule
+    HttpClientModule,
+    MatInputModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatTooltipModule, 
   ],
   providers: [
     provideAnimationsAsync()

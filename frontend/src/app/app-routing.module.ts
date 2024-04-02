@@ -11,11 +11,11 @@ import { CadastroVendaComponent } from './pages/cadastro-venda/cadastro-venda.co
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'produtos', component: ProdutosComponent},
-  {path: 'produtos/:id', component: DetalheProdutoComponent},
   {path: 'produtos/novo', component: CadastroProdutoComponent},
+  {path: 'produtos/:id', component: DetalheProdutoComponent},
   {path: 'vendas', component: VendasComponent},
-  {path: 'vendas/:id', component: DetalheVendaComponent},
   {path: 'vendas/novo', component: CadastroVendaComponent},
+  {path: 'vendas/:id', component: DetalheVendaComponent},
 ];
 
 @NgModule({

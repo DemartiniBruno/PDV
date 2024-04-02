@@ -64,3 +64,14 @@ body{
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+button{
+	background-color: var(--dark-blue);
+    color: white;
+	cursor: pointer;
+    transition: 0.1s;
+}
+
+button:hover{
+	background-color: var(--light-blue);
+}

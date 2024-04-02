@@ -1,1 +1,30 @@
-<p>cadastro-produto works!</p>
+<app-navbar-default></app-navbar-default>
+
+<main>
+    <form action="">
+        <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input required="true" matInput placeholder="Digite o nome do produto">
+        </mat-form-field>
+
+        <div class="detalhes">
+            <mat-form-field appearance="outline">
+                <mat-label >Gtin</mat-label>
+                <input matInput placeholder="Digite o gtin do produto">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Preço</mat-label>
+                <input matInput step=".01" value="0" type="number" class="example-right-align" placeholder="Digite o preço do produto">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Quantidade</mat-label>
+                <input matInput step=".01" value="0" type="number" class="example-right-align" placeholder="Digite a quantidade do produto">
+            </mat-form-field>
+        </div>
+
+        <div class="ativadores">
+            <button >Cancelar</button>
+            <button mat-flat-button>Salvar</button>
+        </div>
+    </form>
+</main>
