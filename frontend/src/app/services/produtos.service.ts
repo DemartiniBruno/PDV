@@ -29,4 +29,8 @@ export class ProdutosService {
   putProduto(id:any, produto:any){
     return this.http.put<any>(`${this.apiUrl}/${id}`,produto)
   }
+
+  deleteProduto(id:any){
+    return this.http.delete<any>(`${this.apiUrl}/${id}`)
+  }
 }

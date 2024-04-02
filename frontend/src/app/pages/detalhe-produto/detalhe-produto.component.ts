@@ -19,7 +19,8 @@ export class DetalheProdutoComponent {
 
   constructor(
     private produtosService: ProdutosService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.consultarItem()
   }
@@ -37,6 +38,20 @@ export class DetalheProdutoComponent {
       if(resultado.status === 200){
         alert(resultado.message)
         // this.router.navigate(['/produtos'])
+      } else {
+        alert(resultado.message)
+      }
+    })
+  }
+
+  apagarItem(){
+    const id = Number(this.route.snapshot.paramMap.get('id'))
+    // this.produtosService.putProduto(id, this.produto).subscribe(produtos => (this.produto = produtos))
+    this.produtosService.deleteProduto(id).subscribe((resultado:any) => {
+      this.consultarItem()
+      if(resultado.status === 200){
+        alert(resultado.message)
+        this.router.navigate(['/produtos'])
       } else {
         alert(resultado.message)
       }

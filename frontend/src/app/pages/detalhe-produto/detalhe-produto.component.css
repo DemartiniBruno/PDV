@@ -43,3 +43,18 @@ button{
     margin-left: 1rem;
     font-size: 1rem;
 }
+
+.ativadores{
+    display: flex;
+    align-items: center;
+}
+
+mat-icon{
+    color: var(--dark-blue);
+    transition: 0.1s;
+}
+
+mat-icon:hover{
+    color: var(--light-blue);
+    cursor: pointer;
+}
