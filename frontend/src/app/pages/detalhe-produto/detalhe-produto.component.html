@@ -1,1 +1,30 @@
 <app-navbar-default></app-navbar-default>
+
+<main>
+    <form>
+        <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input disabled="false"  name="nome" required="true" matInput placeholder="Digite o nome do produto" [(ngModel)]="produto.nome">
+        </mat-form-field>
+
+        <div class="detalhes">
+            <mat-form-field appearance="outline">
+                <mat-label >Gtin</mat-label>
+                <input [(ngModel)]="produto.codigo_barras" name="codigo_barras" matInput placeholder="Digite o gtin do produto">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Preço</mat-label>
+                <input [(ngModel)]="produto.valor_venda" name="valor_venda" matInput step=".01" type="number" class="example-right-align" placeholder="Digite o preço do produto">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Quantidade</mat-label>
+                <input [(ngModel)]="produto.quantidade" name="quantidade" matInput step=".01" type="number" class="example-right-align" placeholder="Digite a quantidade do produto">
+            </mat-form-field>
+        </div>
+
+        <div class="ativadores">
+            <button routerLink="/produtos">Voltar</button>
+            <button (click)="editarItem()">Editar</button>
+        </div>
+    </form>
+</main>

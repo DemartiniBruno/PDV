@@ -16,7 +16,17 @@ export class ProdutosService {
     return this.http.get<Produto[]>(this.apiUrl)
   }
 
+  getOne(id:any){
+    // console.log(id)
+    // console.log(this.http.get<Produto>(this.apiUrl,id))
+    return this.http.get<any>(`${this.apiUrl}/${id}`)
+  }
+
   saveProduto(produto:any){
     return this.http.post(this.apiUrl,produto)
+  }
+
+  putProduto(id:any, produto:any){
+    return this.http.put<any>(`${this.apiUrl}/${id}`,produto)
   }
 }

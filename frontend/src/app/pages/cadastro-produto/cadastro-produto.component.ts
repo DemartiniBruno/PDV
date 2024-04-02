@@ -4,7 +4,6 @@ import { Produto } from '../../Produto';
 import { ProdutosService } from '../../services/produtos.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { Status } from '../../Status';
 
 @Component({
   selector: 'app-cadastro-produto',
