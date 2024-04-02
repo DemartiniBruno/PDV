@@ -92,7 +92,11 @@ const editar_produto = async (req, res) => {
                 if (produto_cadastrado) {
                     if(produto_cadastrado.id == req.params.produto_id){
                         const produto_alterado = await db.Produto.update({ nome, codigo_barras, valor_venda, quantidade }, { where: { id: req.params.produto_id } })
-                        res.json(produto_alterado)
+                        // res.json(produto_alterado)
+                        res.json({
+                            status: 200,
+                            message: 'Produto alterado com sucesso'
+                        })
                     } else {
                         throw new Error('Código de barras já utilizado')
                     }
@@ -100,7 +104,11 @@ const editar_produto = async (req, res) => {
                 }
                 else {
                     const produto_alterado = await db.Produto.update({ nome, codigo_barras, valor_venda, quantidade }, { where: { id: req.params.produto_id } })
-                    res.json(produto_alterado)
+                    // res.json(produto_alterado)
+                    res.json({
+                        status: 200,
+                        message: 'Produto alterado com sucesso'
+                    })
                 }
             } else {
                 const produto_alterado = await db.Produto.update({ nome, codigo_barras, valor_venda, quantidade }, { where: { id: req.params.produto_id } })
