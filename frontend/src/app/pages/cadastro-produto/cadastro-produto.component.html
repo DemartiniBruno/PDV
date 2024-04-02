@@ -1,30 +1,30 @@
 <app-navbar-default></app-navbar-default>
 
 <main>
-    <form action="">
+    <form>
         <mat-form-field appearance="outline">
             <mat-label>Nome</mat-label>
-            <input required="true" matInput placeholder="Digite o nome do produto">
+            <input  name="nome" required="true" matInput placeholder="Digite o nome do produto" [(ngModel)]="produto.nome">
         </mat-form-field>
 
         <div class="detalhes">
             <mat-form-field appearance="outline">
                 <mat-label >Gtin</mat-label>
-                <input matInput placeholder="Digite o gtin do produto">
+                <input [(ngModel)]="produto.codigo_barras" name="codigo_barras" matInput placeholder="Digite o gtin do produto">
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Preço</mat-label>
-                <input matInput step=".01" value="0" type="number" class="example-right-align" placeholder="Digite o preço do produto">
+                <input [(ngModel)]="produto.valor_venda" name="valor_venda" matInput step=".01" type="number" class="example-right-align" placeholder="Digite o preço do produto">
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Quantidade</mat-label>
-                <input matInput step=".01" value="0" type="number" class="example-right-align" placeholder="Digite a quantidade do produto">
+                <input [(ngModel)]="produto.quantidade" name="quantidade" matInput step=".01" type="number" class="example-right-align" placeholder="Digite a quantidade do produto">
             </mat-form-field>
         </div>
 
         <div class="ativadores">
-            <button >Cancelar</button>
-            <button mat-flat-button>Salvar</button>
+            <button routerLink="/produtos">Cancelar</button>
+            <button (click)="cadastrarProduto()">Salvar</button>
         </div>
     </form>
 </main>

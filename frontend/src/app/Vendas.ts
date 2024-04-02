@@ -4,7 +4,7 @@ export interface Vendas {
     valor_total: string;
     status: number;
     data_emissao: any;
-    createdAt: string;
-    updatedAt: string;
+    createdAt: any;
+    updatedAt: any;
     deletedAt: any;
 }

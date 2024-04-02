@@ -15,4 +15,8 @@ export class ProdutosService {
   getAll(): Observable<Produto[]> {
     return this.http.get<Produto[]>(this.apiUrl)
   }
+
+  saveProduto(produto:any){
+    return this.http.post(this.apiUrl,produto)
+  }
 }

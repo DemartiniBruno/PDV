@@ -4,7 +4,7 @@ export interface Produto {
     codigo_barras: any;
     valor_venda: string;
     quantidade: string;
-    createdAt: string;
-    updatedAt: string;
+    createdAt: any;
+    updatedAt: any;
     deletedAt: any;
 }
