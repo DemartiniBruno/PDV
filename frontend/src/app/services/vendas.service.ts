@@ -15,4 +15,8 @@ export class VendasService {
   getAll():Observable<Vendas[]>{
     return this.http.get<Vendas[]>(this.apiUrl)
   }
+
+  getOne(id:any){
+    return this.http.get<any>(`${this.apiUrl}/${id}`)
+  }
 }

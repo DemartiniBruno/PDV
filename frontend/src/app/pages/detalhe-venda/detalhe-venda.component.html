@@ -1,1 +1,33 @@
-<p>detalhe-venda works!</p>
+<app-navbar-default></app-navbar-default>
+<main>
+    <form>
+        <div class="detalhes">
+            <!-- <p [(ngModel)]="venda.id" name="id"></p> -->
+            <mat-form-field appearance="outline">
+                <mat-label>Numero</mat-label>
+                <input [(ngModel)]="venda.numero_venda" name="valor_venda" matInput step=".01" type="number" class="example-right-align" placeholder="Digite o preço do produto">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Status</mat-label>
+                <input [(ngModel)]="venda.status" name="quantidade" matInput step=".01" type="number" class="example-right-align" placeholder="Digite a quantidade do produto">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Data de registro</mat-label>
+                <input [(ngModel)]="venda.createdAt" name="quantidade" matInput step=".01" type="number" class="example-right-align" placeholder="Digite a quantidade do produto">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Data de emissão</mat-label>
+                <input [(ngModel)]="venda.data_emissao" name="quantidade" matInput step=".01" type="number" class="example-right-align" placeholder="Digite a quantidade do produto">
+            </mat-form-field>
+        </div>
+
+        <div class="lista_itens">
+            <p *ngFor="let item of itens_venda">
+                {{item.id}} - {{item.quantidade}} - {{item.valor_unitario}}
+            </p>
+        </div>
+    </form>
+</main>
