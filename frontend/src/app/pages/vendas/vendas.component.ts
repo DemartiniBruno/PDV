@@ -17,4 +17,7 @@ export class VendasComponent {
   getVendas(): void{
     this.vendasService.getAll().subscribe(vendas => (this.vendas = vendas))
   }
+
+  colunas=['id' , 'numero_venda', 'status', 'valor_total']
+  clickedRows = new Set<Vendas>()
 }

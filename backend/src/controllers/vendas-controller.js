@@ -46,7 +46,10 @@ const consultar_venda_especifica = async (req, res) => {
     try {
         const venda = await db.Venda.findOne({
             include: {
-                model: db.Itens_venda
+                model: db.Itens_venda,
+                include:{
+                    model: db.Produto,
+                }
             },
             where: {
                 id: req.params.venda_id

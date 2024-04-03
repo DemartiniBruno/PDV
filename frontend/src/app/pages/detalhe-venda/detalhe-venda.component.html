@@ -1,33 +1,56 @@
 <app-navbar-default></app-navbar-default>
 <main>
     <form>
-        <div class="detalhes">
-            <!-- <p [(ngModel)]="venda.id" name="id"></p> -->
-            <mat-form-field appearance="outline">
-                <mat-label>Numero</mat-label>
-                <input [(ngModel)]="venda.numero_venda" name="valor_venda" matInput step=".01" type="number" class="example-right-align" placeholder="Digite o preço do produto">
-            </mat-form-field>
+        <div class="geral">
+            <h1><strong>Numero: {{venda.numero_venda}}</strong></h1>
+            <h2>Status: <mark>Venda Concluída</mark></h2>
+        </div>
 
-            <mat-form-field appearance="outline">
-                <mat-label>Status</mat-label>
-                <input [(ngModel)]="venda.status" name="quantidade" matInput step=".01" type="number" class="example-right-align" placeholder="Digite a quantidade do produto">
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
-                <mat-label>Data de registro</mat-label>
-                <input [(ngModel)]="venda.createdAt" name="quantidade" matInput step=".01" type="number" class="example-right-align" placeholder="Digite a quantidade do produto">
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
-                <mat-label>Data de emissão</mat-label>
-                <input [(ngModel)]="venda.data_emissao" name="quantidade" matInput step=".01" type="number" class="example-right-align" placeholder="Digite a quantidade do produto">
-            </mat-form-field>
+        <div class="datas">
+            <span>Gerada em: {{venda.createdAt}} ----- </span>
+            <span>Concluída em: {{venda.data_emissao}}</span>
         </div>
 
         <div class="lista_itens">
             <p *ngFor="let item of itens_venda">
-                {{item.id}} - {{item.quantidade}} - {{item.valor_unitario}}
+                {{item.id}} - {{item.produto.nome}} - {{item.quantidade}} - {{item.valor_unitario}}
             </p>
+
         </div>
+
+        <table mat-table [dataSource]="itens_venda">
+            ...
+        </table>
+       
+        <!-- <div class="detalhes"> -->
+            <!-- <div class="geral">
+                <mat-form-field appearance="outline">
+                    <mat-label>Numero</mat-label>
+                    <input [(ngModel)]="venda.numero_venda" name="valor_venda" matInput step=".01" type="number" class="example-right-align" placeholder="Digite o preço do produto">
+                </mat-form-field>
+                <p>{{venda.status}}</p>
+            </div>
+
+            <div class="datas">
+                <mat-form-field appearance="outline">
+                    <mat-label>Data de registro</mat-label>
+                    <input [(ngModel)]="venda.createdAt" name="createdAt" matInput type="date" class="example-right-align" placeholder="Digite a quantidade do produto">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Data de emissão</mat-label>
+                    <input [(ngModel)]="venda.data_emissao" name="data_emissao" matInput type="date" class="example-right-align" placeholder="Digite a quantidade do produto">
+                </mat-form-field>
+            </div>
+
+            <div class="lista_itens">
+                <h1>Produtos:</h1>
+                <p *ngFor="let item of itens_venda">
+                    {{item.id}} - {{item.quantidade}} - {{item.valor_unitario}}
+                </p>
+            </div>
+        </div>
+        <button>finalizar venda</button>
+        <button>cancelar venda</button> -->
+        <!-- </div> -->
     </form>
 </main>

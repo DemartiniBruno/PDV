@@ -17,4 +17,8 @@ export class ProdutosComponent {
   getProdutos(): void{
     this.produtosService.getAll().subscribe(produtos => (this.produtos = produtos));
   }
+
+  clickedRows = new Set<Produto>()
+
+  colunas=['id' , 'nome', 'codigo_barras', 'quantidade', 'preco']
 }

@@ -1,16 +1,68 @@
 <div>
-    <ul>
-        <li *ngFor="let dado of dados">
-            <h1 routerLink="/{{router}}/{{dado.id}}">
-                <span>#{{dado.id}}</span>
-                <span>{{dado.nome}}</span>
-                <span>{{dado.codigo_barras}}</span>
-                <span>Quantidade: {{dado.quantidade}}</span>
-                <span>Preço: R${{dado.quantidade}}</span>
-            </h1>
-        </li> 
-    </ul>
-        <button routerLink="{{router}}/novo">
-            +
-        </button>
+    <table *ngIf="router==='/produtos'" mat-table [dataSource]="dados">
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell *matCellDef="let dado"> #{{dado.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nome">
+            <th mat-header-cell *matHeaderCellDef> Nome </th>
+            <td mat-cell *matCellDef="let dado"> {{dado.nome}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="codigo_barras">
+            <th mat-header-cell *matHeaderCellDef> Gtin </th>
+            <td mat-cell *matCellDef="let dado"> {{dado.codigo_barras}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="quantidade">
+            <th mat-header-cell *matHeaderCellDef> Quantidade </th>
+            <td mat-cell *matCellDef="let dado"> {{dado.quantidade}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="preco">
+            <th mat-header-cell *matHeaderCellDef> Preço </th>
+            <td mat-cell *matCellDef="let dado"> {{dado.valor_venda}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="nome_coluna"></tr>
+
+        <tr mat-row (click)="clickedRows.add(row)" (click)="redirecionar()" [class.demo-row-is-clicked]="clickedRows.has(row)"
+            *matRowDef="let row; columns: nome_coluna;"></tr>
+    </table>
+
+
+
+    <!--  -->
+
+    <table *ngIf="router==='/vendas'" mat-table [dataSource]="dados">
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell *matCellDef="let dado"> #{{dado.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="numero_venda">
+            <th mat-header-cell *matHeaderCellDef> Numero </th>
+            <td mat-cell *matCellDef="let dado"> {{dado.numero_venda}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let dado"> {{dado.status}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="valor_total">
+            <th mat-header-cell *matHeaderCellDef> Valor Total </th>
+            <td mat-cell *matCellDef="let dado"> {{dado.valor_total}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="nome_coluna"></tr>
+
+        <tr mat-row (click)="clickedRows.add(row)" (click)="redirecionar()" [class.demo-row-is-clicked]="clickedRows.has(row)"
+            *matRowDef="let row; columns: nome_coluna;"></tr>
+    </table>
+
+    <button routerLink="{{router}}/novo">
+        +
+    </button>
 </div>

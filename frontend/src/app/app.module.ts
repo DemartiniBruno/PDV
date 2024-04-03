@@ -21,6 +21,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {Sort, MatSortModule} from '@angular/material/sort';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatFormFieldModule,
     MatTooltipModule,
     FormsModule,
+    MatSortModule,
+    MatTableModule
+
   ],
   providers: [
     provideAnimationsAsync()
