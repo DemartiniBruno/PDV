@@ -3,6 +3,7 @@ import { VendasService } from '../../services/vendas.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Vendas } from '../../Vendas';
 import {MatTableModule} from '@angular/material/table';
+import { Produto } from '../../Produto';
 
 export interface Itens_venda {
   id:number,
@@ -14,7 +15,7 @@ export interface Itens_venda {
   deletedAt:any,
   produto_id:number,
   venda_id:number,
-  produto: any
+  produto:Produto
 }
 
 @Component({
@@ -23,20 +24,42 @@ export interface Itens_venda {
   styleUrl: './detalhe-venda.component.css'
 })
 
-
-
-
 export class DetalheVendaComponent {
-
-  teste(id:any){
-    console.log('teste', id)
-  }
   
-  venda!:Vendas
-  itens_venda!:Itens_venda[]
+  venda:Vendas={
+    id: 0,
+    numero_venda: 0,
+    valor_total: 'string',
+    status: 0,
+    data_emissao: null,
+    createdAt: null,
+    updatedAt: null,
+    deletedAt: null,
 
-  displayColumns2: string[] = ['id', 'nome', 'quantidade', 'valor unitario', 'valor total']
-  dataSource2 = this.itens_venda
+  }
+  itens_venda:Itens_venda[] = [{
+    id:0,
+    quantidade:'',
+    valor_unitario:'',
+    valor_total_item:'',
+    createdAt:null,
+    updatedAt:null,
+    deletedAt:null,
+    produto_id:0,
+    venda_id:0,
+    produto:{
+      id: 0,
+      nome: '',
+      codigo_barras: null,
+      valor_venda: '',
+      quantidade: '',
+      createdAt: null,
+      updatedAt: null,
+      deletedAt: null
+    }
+  }]
+
+  nome_coluna:string[] = ['id', 'nome', 'quantidade', 'valor_unitario', 'valor_total_item']
 
   constructor(
     private vendasService: VendasService,
@@ -51,9 +74,6 @@ export class DetalheVendaComponent {
     this.vendasService.getOne(id).subscribe(venda=>{
       this.venda = venda
       this.itens_venda=venda.itens_vendas
-      console.log(this.venda)
-      console.log(this.itens_venda)
-      
     })
   }
 }
