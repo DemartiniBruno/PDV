@@ -19,4 +19,12 @@ export class VendasService {
   getOne(id:any){
     return this.http.get<any>(`${this.apiUrl}/${id}`)
   }
+
+  saveVenda(dados_nota:any){
+    return this.http.post<any>(this.apiUrl, dados_nota)
+  }
+
+  addProdutoVenda(item_lista:any, venda_id:number){
+    return this.http.post<any>(`${this.apiUrl}/${venda_id}`,item_lista)
+  }
 }

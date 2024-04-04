@@ -1,7 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { ProdutosService } from '../../services/produtos.service';
-import {MatTable, MatTableModule} from '@angular/material/table';
-import {MatButtonModule} from '@angular/material/button';
+import { VendasService } from '../../services/vendas.service';
+import { MatTable, MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { Router } from '@angular/router';
+
 
 export interface lista_itens {
   quantidade: string,
@@ -25,12 +28,14 @@ export class CadastroVendaComponent {
 
   @ViewChild(MatTable) table!: MatTable<lista_itens>;
 
-  lista_itens:lista_itens[] = []
-  
-  nome_coluna:string[] = ['nome', 'quantidade' , 'valor_unitario', 'valor_total_item']
+  lista_itens: lista_itens[] = []
+
+  nome_coluna: string[] = ['nome', 'quantidade', 'valor_unitario', 'valor_total_item']
 
   constructor(
     private produtosService: ProdutosService,
+    private vendasService: VendasService,
+    private router: Router
   ) { }
 
   adicionarItem() {
@@ -38,14 +43,28 @@ export class CadastroVendaComponent {
     const id = Number(this.item_id)
     this.produtosService.getOne(id).subscribe((produto) => {
       this.lista_itens.push({
-          quantidade: String(this.quantidade),
-          valor_unitario: produto.valor_venda,
-          valor_total_item: String(this.quantidade*produto.valor_venda),
-          produto_id: produto.id,
-          nome: produto.nome
+        quantidade: String(this.quantidade),
+        valor_unitario: produto.valor_venda,
+        valor_total_item: String(this.quantidade * produto.valor_venda),
+        produto_id: produto.id,
+        nome: produto.nome
       })
       this.table.renderRows();
       console.log(this.lista_itens)
+    })
+  }
+
+  salvar_nota() {
+    const dados_nota = {
+      numero_venda: 8,
+      status: 0
+    }
+    this.vendasService.saveVenda(dados_nota).subscribe((nova_venda) => {
+      this.lista_itens.forEach((item) => {
+        this.vendasService.addProdutoVenda(item, nova_venda.id).subscribe((retorno) => console.log(retorno))
+      })
+
+      this.router.navigate([`/vendas/${nova_venda.id}`])
     })
   }
 }
