@@ -48,7 +48,7 @@ import {MatTableModule} from '@angular/material/table';
     MatTooltipModule,
     FormsModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
 
   ],
   providers: [
