@@ -69,7 +69,11 @@ export class DetalheVendaComponent {
     const id = Number(this.route.snapshot.paramMap.get('id'))
     this.vendasService.concluiVenda(id).subscribe(retorno=>(console.log(retorno)))
     this.router.navigate([`/vendas/`])
+  }
 
-    this.router.navigate([`/vendas/${id}`])
+  deletarVenda(){
+    const id = Number(this.route.snapshot.paramMap.get('id'))
+    this.vendasService.deleteVenda(id).subscribe(retorno=>(console.log(retorno)))
+    this.router.navigate([`/vendas/`])
   }
 }

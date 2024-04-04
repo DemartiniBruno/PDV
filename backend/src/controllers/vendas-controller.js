@@ -167,15 +167,6 @@ const voltar_quantidade = async (venda_id) => {
     }
 }
 
-//     mudar status da venda para 1
-//         -   quando status = 1 fazer uma diretiva para aparecer o botao de cancelar e sumir o de concluir
-//         -   o botao de concluir deve aparecer quando status for igual a 0 
-//     estoque = estoque - quantidade do item da venda
-//         -   recebe uma lista de itens da venda
-//         -   roda um foreach vai dando baixa na quantidade do estoque com o respectivo produto_id
-
-
-
 module.exports = {
     nova_venda,
     adicionar_item,

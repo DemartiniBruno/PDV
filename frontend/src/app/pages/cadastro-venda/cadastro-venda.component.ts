@@ -7,11 +7,12 @@ import { Router } from '@angular/router';
 
 
 export interface lista_itens {
+  position: number
   quantidade: string,
   valor_unitario: string,
   valor_total_item: string,
   produto_id: number,
-  nome: string
+  nome: string,
 }
 
 @Component({
@@ -23,23 +24,23 @@ export interface lista_itens {
 })
 
 export class CadastroVendaComponent {
-  numero_venda!:number
+  numero_venda!: number
   item_id: any
   quantidade: number = 1
-
+  position = 0
   @ViewChild(MatTable) table!: MatTable<lista_itens>;
 
   lista_itens: lista_itens[] = []
 
-  nome_coluna: string[] = ['nome', 'quantidade', 'valor_unitario', 'valor_total_item']
+  nome_coluna: string[] = ['nome', 'quantidade', 'valor_unitario', 'valor_total_item', 'x']
 
   constructor(
     private produtosService: ProdutosService,
     private vendasService: VendasService,
     private router: Router
-  ) { 
+  ) {
 
-    this.vendasService.getNumeroVenda().subscribe((retorno)=>{
+    this.vendasService.getNumeroVenda().subscribe((retorno) => {
       this.numero_venda = retorno.numero_venda
     })
   }
@@ -49,27 +50,47 @@ export class CadastroVendaComponent {
     const id = Number(this.item_id)
     this.produtosService.getOne(id).subscribe((produto) => {
       this.lista_itens.push({
+        position: this.position,
         quantidade: String(this.quantidade),
         valor_unitario: produto.valor_venda,
         valor_total_item: String(this.quantidade * produto.valor_venda),
         produto_id: produto.id,
         nome: produto.nome
       })
+      this.position++
       this.table.renderRows();
-      console.log(this.lista_itens)
     })
   }
 
+  apagarItem(dado: any) {
+    // console.log(this.lista_itens.findIndex(dado))
+
+    // console.log(this.lista_itens.findIndex(checkAge))
+
+    // function checkAge(item:any) {
+    //   return item.position > dado;
+    // }
+    // console.log(this.lista_itens.indexOf());
+    const index = this.lista_itens.findIndex(findItem)
+    console.log(index)
+    this.lista_itens.findIndex(findItem)
+    function findItem(item: any) {
+      return item.position === dado;
+    }
+
+    this.lista_itens.splice(index, 1)
+
+    this.table.renderRows();
+  }
+
   salvar_nota() {
-
-
 
     const dados_nota = {
       numero_venda: this.numero_venda,
       status: 0
     }
 
-    console.log('teste: ',dados_nota)
+    console.log('teste: ', dados_nota)
 
     this.vendasService.saveVenda(dados_nota).subscribe((nova_venda) => {
       this.lista_itens.forEach((item) => {

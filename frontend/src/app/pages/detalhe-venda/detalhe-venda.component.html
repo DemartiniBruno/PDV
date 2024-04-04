@@ -47,7 +47,7 @@
 
         <div class="botoes">
             <button routerLink="/vendas">Voltar</button>
-            <button *ngIf="venda.status===1">Cancelar Venda</button>
+            <button *ngIf="venda.status===1" (click)="deletarVenda()">Cancelar Venda</button>
             <button *ngIf="venda.status===0" (click)="concluirVenda()">Concluir Venda</button>
         </div>
     </form>

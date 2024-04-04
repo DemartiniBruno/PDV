@@ -38,3 +38,13 @@ mat-form-field{
 .novo_item:hover{
     background-color: var(--light-blue);
 }
+
+mat-icon{
+    color: var(--dark-blue);
+    transition: 0.1s;
+}
+
+mat-icon:hover{
+    color: var(--light-blue);
+    cursor: pointer;
+}

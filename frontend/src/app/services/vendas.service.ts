@@ -35,4 +35,8 @@ export class VendasService {
   concluiVenda(venda_id:any){
     return this.http.get<any>(`http://localhost:3000/concluir/${venda_id}`)
   }
+
+  deleteVenda(venda_id:any){
+    return this.http.delete<any>(`http://localhost:3000/vendas/${venda_id}`)
+  }
 }
