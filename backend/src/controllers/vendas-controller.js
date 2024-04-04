@@ -64,8 +64,10 @@ const consultar_venda_especifica = async (req, res) => {
 
 const consultar_numero = async (req, res) => {
     try {
-        const numero = await db.Venda.find()
-        res.json(vendas)
+        const numero = await db.Config.findOne({
+            attributes:['numero_venda']
+        })
+        res.json(numero)
     } catch (error) {
         res.json(error.message)
     }
@@ -110,5 +112,6 @@ module.exports = {
     consultar_vendas,
     consultar_venda_especifica,
     cancelar_item,
-    atualizar_status_venda
+    atualizar_status_venda,
+    consultar_numero
 }
