@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { VendasService } from '../../services/vendas.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Vendas } from '../../Vendas';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { Produto } from '../../Produto';
 import { Itens_venda } from '../../Itens_venda';
 
@@ -13,8 +13,8 @@ import { Itens_venda } from '../../Itens_venda';
 })
 
 export class DetalheVendaComponent {
-  
-  venda:Vendas={
+
+  venda: Vendas = {
     id: 0,
     numero_venda: 0,
     valor_total: 'string',
@@ -25,17 +25,17 @@ export class DetalheVendaComponent {
     deletedAt: null,
 
   }
-  itens_venda:Itens_venda[] = [{
-    id:0,
-    quantidade:'',
-    valor_unitario:'',
-    valor_total_item:'',
-    createdAt:null,
-    updatedAt:null,
-    deletedAt:null,
-    produto_id:0,
-    venda_id:0,
-    produto:{
+  itens_venda: Itens_venda[] = [{
+    id: 0,
+    quantidade: '',
+    valor_unitario: '',
+    valor_total_item: '',
+    createdAt: null,
+    updatedAt: null,
+    deletedAt: null,
+    produto_id: 0,
+    venda_id: 0,
+    produto: {
       id: 0,
       nome: '',
       codigo_barras: null,
@@ -47,21 +47,29 @@ export class DetalheVendaComponent {
     }
   }]
 
-  nome_coluna:string[] = ['id', 'nome', 'quantidade', 'valor_unitario', 'valor_total_item']
+  nome_coluna: string[] = ['id', 'nome', 'quantidade', 'valor_unitario', 'valor_total_item']
 
   constructor(
     private vendasService: VendasService,
     private route: ActivatedRoute,
     private router: Router
-  ){
+  ) {
     this.consultarVenda()
   }
 
-  consultarVenda (){
+  consultarVenda() {
     const id = Number(this.route.snapshot.paramMap.get('id'))
-    this.vendasService.getOne(id).subscribe(venda=>{
+    this.vendasService.getOne(id).subscribe(venda => {
       this.venda = venda
-      this.itens_venda=venda.itens_vendas
+      this.itens_venda = venda.itens_vendas
     })
+  }
+
+  concluirVenda() {
+    const id = Number(this.route.snapshot.paramMap.get('id'))
+    this.vendasService.concluiVenda(id).subscribe(retorno=>(console.log(retorno)))
+    this.router.navigate([`/vendas/`])
+
+    this.router.navigate([`/vendas/${id}`])
   }
 }

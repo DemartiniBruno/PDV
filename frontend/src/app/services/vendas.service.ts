@@ -31,4 +31,8 @@ export class VendasService {
   getNumeroVenda(){
     return this.http.get<any>('http://localhost:3000/config/numero')
   }
+
+  concluiVenda(venda_id:any){
+    return this.http.get<any>(`http://localhost:3000/concluir/${venda_id}`)
+  }
 }
