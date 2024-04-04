@@ -67,10 +67,17 @@ Itens_venda.belongsTo(Produto, {foreignKey: 'produto_id'});
 Venda.hasMany(Itens_venda,{foreignKey:'venda_id'});
 Itens_venda.belongsTo(Venda,{foreignKey:'venda_id'});
 
+const Config = sequelize.define('Config',{
+    numero_venda: {
+        type: DataTypes.INTEGER(6),
+        defaultValue: 1
+    },
+}, { sequelize, paranoid: true});
 
 module.exports = {
     sequelize,
     Produto,
     Venda,
-    Itens_venda
+    Itens_venda,
+    Config
 };

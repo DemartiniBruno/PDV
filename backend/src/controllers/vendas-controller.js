@@ -62,6 +62,15 @@ const consultar_venda_especifica = async (req, res) => {
     }
 }
 
+const consultar_numero = async (req, res) => {
+    try {
+        const numero = await db.Venda.find()
+        res.json(vendas)
+    } catch (error) {
+        res.json(error.message)
+    }
+}
+
 const atualizar_valor_venda = async (venda_id) => {
     const valor_total = await db.Itens_venda.sum('valor_total_item', { where: { venda_id: venda_id } })
     const venda = await db.Venda.update({ valor_total }, { where: { id: venda_id } })
