@@ -4,7 +4,7 @@ const db = require('./db/db-create.js')
 app.listen(3000, async () => {
     try {
         await db.sequelize.authenticate();
-        await db.sequelize.sync({ force: true })
+        await db.sequelize.sync({ alter: true })
         if (!await db.Config.findOne()) {
             await db.Config.create()
 

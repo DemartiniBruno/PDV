@@ -1,3 +1,4 @@
+const { where } = require('sequelize')
 const db = require('../db/db-create')
 
 const nova_venda = async (req, res) => {
@@ -68,7 +69,7 @@ const consultar_numero = async (req, res) => {
             attributes: ['numero_venda']
         })
 
-        const numero_venda = numero.numero_venda+1
+        const numero_venda = numero.numero_venda + 1
 
         await db.Config.update({ numero_venda }, { where: { id: 1 } })
         // console.log(novo_numero)
@@ -100,6 +101,60 @@ const atualizar_status_venda = async (req, res) => {
     res.json(status)
 }
 
+const concluir_venda = async (req, res) => {
+    try {
+        const date = new Date()
+        const data_conclusao = date.toISOString()
+
+        await db.Venda.update({ status: 1, data_emissao: data_conclusao }, { where: { id: req.params.venda_id } })
+
+        itens = await baixar_quantidade(req.params.venda_id)
+        res.json(itens)
+    } catch (error) {
+        res.json(error.message)
+    }
+}
+
+const cancelar_venda = async (req, res) => {
+
+}
+
+const baixar_quantidade = async (venda_id) => {
+
+    try {
+        const lista_itens = await db.Itens_venda.findAll({ where: { venda_id: venda_id } })
+
+        lista_itens.forEach(async item => {
+            const quantidade_atual = await db.Produto.findOne({
+                attributes:['quantidade'],
+                where:{
+                    id:item.produto_id
+                }
+            })
+            const nova_quantidade = Number(quantidade_atual.quantidade) - Number(item.quantidade)
+            await db.Produto.update({quantidade: nova_quantidade}, {where:{id:item.produto_id}})
+        })
+        return lista_itens
+
+    } catch (error) {
+        res.json(error.message)
+    }
+
+}
+
+const voltar_quantidade = async (req, res) => {
+
+}
+
+//     mudar status da venda para 1
+//         -   quando status = 1 fazer uma diretiva para aparecer o botao de cancelar e sumir o de concluir
+//         -   o botao de concluir deve aparecer quando status for igual a 0 
+//     estoque = estoque - quantidade do item da venda
+//         -   recebe uma lista de itens da venda
+//         -   roda um foreach vai dando baixa na quantidade do estoque com o respectivo produto_id
+
+
+
 module.exports = {
     nova_venda,
     adicionar_item,
@@ -107,5 +162,6 @@ module.exports = {
     consultar_venda_especifica,
     cancelar_item,
     atualizar_status_venda,
-    consultar_numero
+    consultar_numero,
+    concluir_venda
 }

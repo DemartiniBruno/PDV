@@ -11,5 +11,8 @@ gruposRouters.delete('/vendas/:venda_id', controller.cancelar_item)
 gruposRouters.post('/status/:venda_id', controller.atualizar_status_venda)
 gruposRouters.get('/config/numero', controller.consultar_numero)
 
+gruposRouters.patch('/concluir/:venda_id', controller.concluir_venda)
+
+
 
 module.exports = gruposRouters;
