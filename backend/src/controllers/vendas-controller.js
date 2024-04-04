@@ -107,43 +107,64 @@ const concluir_venda = async (req, res) => {
         const data_conclusao = date.toISOString()
 
         await db.Venda.update({ status: 1, data_emissao: data_conclusao }, { where: { id: req.params.venda_id } })
+        await baixar_quantidade(req.params.venda_id)
 
-        itens = await baixar_quantidade(req.params.venda_id)
-        res.json(itens)
     } catch (error) {
         res.json(error.message)
     }
 }
 
 const cancelar_venda = async (req, res) => {
+    try {
+        await db.Venda.destroy({ where: { id: req.params.venda_id } })
 
+        const itens = await voltar_quantidade(req.params.venda_id)
+        res.json(itens)
+    } catch (error) {
+        res.json(error.message)
+    }
 }
 
 const baixar_quantidade = async (venda_id) => {
-
     try {
         const lista_itens = await db.Itens_venda.findAll({ where: { venda_id: venda_id } })
 
         lista_itens.forEach(async item => {
             const quantidade_atual = await db.Produto.findOne({
-                attributes:['quantidade'],
-                where:{
-                    id:item.produto_id
+                attributes: ['quantidade'],
+                where: {
+                    id: item.produto_id
                 }
             })
             const nova_quantidade = Number(quantidade_atual.quantidade) - Number(item.quantidade)
-            await db.Produto.update({quantidade: nova_quantidade}, {where:{id:item.produto_id}})
+            await db.Produto.update({ quantidade: nova_quantidade }, { where: { id: item.produto_id } })
         })
         return lista_itens
 
     } catch (error) {
         res.json(error.message)
     }
-
 }
 
-const voltar_quantidade = async (req, res) => {
+const voltar_quantidade = async (venda_id) => {
+    try {
+        const lista_itens = await db.Itens_venda.findAll({ where: { venda_id: venda_id } })
 
+        lista_itens.forEach(async item => {
+            const quantidade_atual = await db.Produto.findOne({
+                attributes: ['quantidade'],
+                where: {
+                    id: item.produto_id
+                }
+            })
+            const nova_quantidade = Number(quantidade_atual.quantidade) + Number(item.quantidade)
+            await db.Produto.update({ quantidade: nova_quantidade }, { where: { id: item.produto_id } })
+        })
+        return lista_itens
+
+    } catch (error) {
+        res.json(error.message)
+    }
 }
 
 //     mudar status da venda para 1
@@ -163,5 +184,6 @@ module.exports = {
     cancelar_item,
     atualizar_status_venda,
     consultar_numero,
-    concluir_venda
+    concluir_venda,
+    cancelar_venda
 }
