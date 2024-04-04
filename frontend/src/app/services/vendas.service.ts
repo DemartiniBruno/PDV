@@ -27,4 +27,8 @@ export class VendasService {
   addProdutoVenda(item_lista:any, venda_id:number){
     return this.http.post<any>(`${this.apiUrl}/${venda_id}`,item_lista)
   }
+
+  getNumeroVenda(){
+    return this.http.get<any>('http://localhost:3000/config/numero')
+  }
 }

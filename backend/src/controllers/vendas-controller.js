@@ -47,7 +47,7 @@ const consultar_venda_especifica = async (req, res) => {
         const venda = await db.Venda.findOne({
             include: {
                 model: db.Itens_venda,
-                include:{
+                include: {
                     model: db.Produto,
                 }
             },
@@ -65,8 +65,16 @@ const consultar_venda_especifica = async (req, res) => {
 const consultar_numero = async (req, res) => {
     try {
         const numero = await db.Config.findOne({
-            attributes:['numero_venda']
+            attributes: ['numero_venda']
         })
+
+        const numero_venda = numero.numero_venda+1
+
+        await db.Config.update({ numero_venda }, { where: { id: 1 } })
+        // console.log(novo_numero)
+
+        // await db.Config.update({numero_venda:novo_numero})
+
         res.json(numero)
     } catch (error) {
         res.json(error.message)
@@ -88,23 +96,9 @@ const cancelar_item = async (req, res) => {
 
 const atualizar_status_venda = async (req, res) => {
     const status = req.body.status
-    await db.Venda.update({status}, {where:{id:req.params.venda_id}})
+    await db.Venda.update({ status }, { where: { id: req.params.venda_id } })
     res.json(status)
 }
-
-// Acho que essa funcao é para um get:venda_id
-// const listar_itens_venda = async (venda_id) => {
-//     const itens_venda = await db.Itens_venda.findAll({
-//         include:{
-//             model: db.Venda,
-//             where:{
-//                 id: venda_id
-//             }
-//         }
-//     })
-
-//     return itens_venda
-// }
 
 module.exports = {
     nova_venda,

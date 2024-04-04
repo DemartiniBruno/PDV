@@ -23,6 +23,7 @@ export interface lista_itens {
 })
 
 export class CadastroVendaComponent {
+  numero_venda!:number
   item_id: any
   quantidade: number = 1
 
@@ -36,7 +37,12 @@ export class CadastroVendaComponent {
     private produtosService: ProdutosService,
     private vendasService: VendasService,
     private router: Router
-  ) { }
+  ) { 
+
+    this.vendasService.getNumeroVenda().subscribe((retorno)=>{
+      this.numero_venda = retorno.numero_venda
+    })
+  }
 
   adicionarItem() {
     // console.log(this.item_id, this.quantidade)
@@ -55,10 +61,16 @@ export class CadastroVendaComponent {
   }
 
   salvar_nota() {
+
+
+
     const dados_nota = {
-      numero_venda: 8,
+      numero_venda: this.numero_venda,
       status: 0
     }
+
+    console.log('teste: ',dados_nota)
+
     this.vendasService.saveVenda(dados_nota).subscribe((nova_venda) => {
       this.lista_itens.forEach((item) => {
         this.vendasService.addProdutoVenda(item, nova_venda.id).subscribe((retorno) => console.log(retorno))
