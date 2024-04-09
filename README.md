@@ -10,7 +10,7 @@ NodeJS
 Postegres
 Angular
 
-### 🔧 Instalação
+### Instalação
 
 Após realizar o download do projeto é necessário verificar e ajustar, caso necessário, a conexão para seu banco. Isso deve ser feito pelo arquivo db-create.js <./backend/src/db> alterando a declaração do sequelize.
 
