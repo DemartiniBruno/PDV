@@ -40,11 +40,11 @@ ng serve
 
 Com isso feito já é possivel navegar pela aplicação, cadastrado e realizando a venda de produtos.
 
-## 📦 Implantação
+## Implantação
 
 Até o momento parte das configurações do sistema esta estatica, então uma proxima implementação é tanto as paginas de configuração quanto os metodos de controle em si, como por exemplo para alterar a numeração das notas iniciais, por padrão iniciam como 1 quando o banco é criado.
 
-## 🛠️ Construído com
+## Construído com
 
 O projeto foi desenvolvido em NodeJS e Angular, utilizando algumar bibliotecas adicionais no NodeJS para complementar as demandas.
 
