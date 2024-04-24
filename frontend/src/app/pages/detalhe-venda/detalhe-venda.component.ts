@@ -71,8 +71,22 @@ export class DetalheVendaComponent {
         case 2:
           this.venda.status='Venda Cancelada'
       }
+      console.log(this.venda.data_emissao)
+      this.venda.createdAt = this.formataData(this.venda.createdAt)
+      this.venda.data_emissao = this.formataData(this.venda.data_emissao)
       this.itens_venda = venda.itens_vendas
     })
+  }
+
+  formataData(data: any){
+    const dataFormatada = {
+      dia: data.split('T').splice(0,1).toString().split('-').reverse().join('/'),
+      hora: data.split('T').splice(1,1).toString().split('.').splice(0,1).toString()
+    }
+
+    const novaData = `${dataFormatada.dia} ${dataFormatada.hora}`
+
+    return novaData
   }
 
   concluirVenda() {
