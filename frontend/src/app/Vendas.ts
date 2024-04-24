@@ -2,7 +2,7 @@ export interface Vendas {
     id: number;
     numero_venda: number;
     valor_total: string;
-    status: number;
+    status: any;
     data_emissao: any;
     createdAt: any;
     updatedAt: any;

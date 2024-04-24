@@ -61,6 +61,16 @@ export class DetalheVendaComponent {
     const id = Number(this.route.snapshot.paramMap.get('id'))
     this.vendasService.getOne(id).subscribe(venda => {
       this.venda = venda
+      switch(this.venda.status){
+        case 0:
+          this.venda.status='Venda Pendente'
+          break
+        case 1:
+          this.venda.status='Venda Concluída'
+          break
+        case 2:
+          this.venda.status='Venda Cancelada'
+      }
       this.itens_venda = venda.itens_vendas
     })
   }

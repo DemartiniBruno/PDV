@@ -3,7 +3,7 @@
     <form>
         <div class="geral">
             <h1>Numero: {{venda.numero_venda}}</h1>
-            <h2>Status: <mark>{{venda.status}}</mark></h2>
+            <h2>Status: {{venda.status}}</h2>
         </div>
 
         <div class="datas">
@@ -47,8 +47,8 @@
 
         <div class="botoes">
             <button routerLink="/vendas">Voltar</button>
-            <button *ngIf="venda.status===1" (click)="deletarVenda()">Cancelar Venda</button>
-            <button *ngIf="venda.status===0" (click)="concluirVenda()">Concluir Venda</button>
+            <button *ngIf="venda.status==='Venda Concluída'" (click)="deletarVenda()">Cancelar Venda</button>
+            <button *ngIf="venda.status==='Venda Pendente'" (click)="concluirVenda()">Concluir Venda</button>
         </div>
     </form>
 </main>
