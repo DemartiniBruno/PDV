@@ -2,6 +2,10 @@
 
 Desenvolvido em NodeJS e Angular se trata de um ponto de venda onde é possivel realizar o cadastro e venda de produtos. Vale destacar que é possivel também realizar a edição e exclusão dos produtos e também o cancelamento das vendas concluídas.
 
+Documentação com os processos básicos do projeto:
+
+https://comet-tithonia-cd7.notion.site/Documenta-o-PDV-55570b43bca145919b760692ebf0b7c5
+
 ## Primeiros Passos
 
 ### Pré-requisitos
