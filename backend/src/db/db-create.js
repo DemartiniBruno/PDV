@@ -1,12 +1,16 @@
 const { Sequelize, DataTypes } = require('sequelize');
 
-const sequelize = new Sequelize({
-    dialect: 'postgres',
+// const sequelize = new Sequelize({
+//     dialect: 'postgres',
+//     host: 'localhost',
+//     storage: 'postgres',
+//     username: 'postgres',
+//     password: 'admin'
+// });
+const sequelize = new Sequelize('postgres', 'postgres', 'admin', {
     host: 'localhost',
-    storage: 'postgres',
-    username: 'postgres',
-    password: 'admin'
-});
+    dialect: 'postgres',
+  });
 
 const Produto = sequelize.define('produto', {
     nome: {
