@@ -73,7 +73,9 @@ export class DetalheVendaComponent {
       }
       console.log(this.venda.data_emissao)
       this.venda.createdAt = this.formataData(this.venda.createdAt)
-      this.venda.data_emissao = this.formataData(this.venda.data_emissao)
+      if(this.venda.status===1){
+        this.venda.data_emissao = this.formataData(this.venda.data_emissao)
+      }
       this.itens_venda = venda.itens_vendas
     })
   }
