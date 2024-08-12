@@ -63,9 +63,3 @@ O projeto foi desenvolvido em NodeJS e Angular, utilizando algumar bibliotecas a
   * [Cors]<2.8.5> 
   * [Sequelize]<6.37.1> 
 * [Angular](https://angular.io/docs) - O framework usado para desenvolver o front-end
-
-
-* [Angular](https://angular.io/docs) - O framework usado para desenvolver o front-end
-* [Angular](https://angular.io/docs) - O framework usado para desenvolver o front-end
-* [Angular](https://angular.io/docs) - O framework usado para desenvolver o front-end
-* [Angular](https://angular.io/docs) - O framework usado para desenvolver o front-end
